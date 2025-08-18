@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Django
+*.log
+*.pot
+*.pyc
+*.mo
+*.db
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+static/
+.env
+.env.*
+.envrc
+.env.local
+*.secret
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# VS Code / PyCharm / IDE
+.vscode/
+.idea/
+*.swp
+
+# Coverage / testing
+.coverage
+htmlcov/
+.tox/
+.nox/
+.pytest_cache/
+
+# Docker
+*.pid
+*.sock
+*.seed
+*.pid.lock
+docker-compose.override.yml
+
+# Mac / OS specific
+.DS_Store
+Thumbs.db
