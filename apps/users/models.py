@@ -39,6 +39,8 @@ class CustomUser(AbstractUser):
     assigned_menus = models.ManyToManyField(
         "tickets.MenuLevel3", blank=True, related_name="assigned_users"
     )
+    created_at = models.DateTimeField("created at", auto_now_add=True, null=True)
+    modified_at = models.DateTimeField("last modified at", auto_now=True, null=True)
 
     def has_permission(self, codename):
         """Check if user's role has given permission"""
