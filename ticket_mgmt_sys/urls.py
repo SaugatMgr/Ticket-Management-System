@@ -18,7 +18,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from apps.tickets.api.v1.routes.routers import ticket_router
+from apps.users.api.v1.routes.routers import user_router
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/v1/user/", include("apps.users.api.v1.routes.urls")),
+    path("api/v1/", include(ticket_router.urls)),
+    path("api/v1/user/", include(user_router.urls)),
 ]
