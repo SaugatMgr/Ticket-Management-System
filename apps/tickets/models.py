@@ -17,6 +17,9 @@ class MenuLevel2(BaseModel):
     )
     name = models.CharField(max_length=100)
 
+    class Meta:
+        unique_together = ("parent", "name")
+
     def __str__(self):
         return f"{self.parent} > {self.name}"
 
@@ -26,6 +29,9 @@ class MenuLevel3(BaseModel):
         MenuLevel2, on_delete=models.CASCADE, related_name="children"
     )
     name = models.CharField(max_length=100)
+
+    class Meta:
+        unique_together = ("parent", "name")
 
     def __str__(self):
         return f"{self.parent} > {self.name}"
