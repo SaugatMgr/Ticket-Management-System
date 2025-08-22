@@ -34,6 +34,7 @@ class CustomUser(AbstractUser):
     """
     Represents a user in the system.
     """
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True, blank=True)
     assigned_menus = models.ManyToManyField(
@@ -44,6 +45,8 @@ class CustomUser(AbstractUser):
 
     def has_permission(self, codename):
         """Check if user's role has given permission"""
+        if self.is_superuser:
+            return True
         if not self.role:
             return False
         return self.role.permissions.filter(codename=codename).exists()
