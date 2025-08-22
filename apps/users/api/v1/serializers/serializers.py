@@ -5,7 +5,7 @@ from rest_framework_simplejwt.serializers import (
 )
 from rest_framework_simplejwt.settings import api_settings
 
-from apps.users.models import CustomUser
+from apps.users.models import CustomUser, Permission, Role
 from utils.services import generate_error
 
 
@@ -64,3 +64,27 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 class CustomTokenVerifySerializer(TokenVerifySerializer):
     token = serializers.CharField(max_length=500, required=True)
+
+
+class PermissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Permission
+        fields = ["id", "codename", "description"]
+
+
+class RoleSerializer(serializers.ModelSerializer):
+    permissions = PermissionSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Role
+        fields = ["id", "name", "permissions"]
+
+
+class CreateRoleSerializer(serializers.ModelSerializer):
+    permissions = serializers.PrimaryKeyRelatedField(
+        queryset=Permission.objects.all(), many=True
+    )
+
+    class Meta:
+        model = Role
+        fields = ["name", "permissions"]
