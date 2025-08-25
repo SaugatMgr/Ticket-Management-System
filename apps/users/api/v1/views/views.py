@@ -13,6 +13,7 @@ from apps.users.api.v1.serializers.serializers import (
     UserRegisterSerializer,
 )
 from apps.users.models import CustomUser
+from utils.permissions import IsAdmin
 from utils.services import get_instance_by_attr
 
 
@@ -78,6 +79,7 @@ class CustomTokenVerifyView(TokenVerifyView):
 
 
 class AssignPermissionToUserView(APIView):
+    permission_classes = [IsAdmin]
 
     def post(self, request, *args, **kwargs):
         user_id = kwargs.get("user_id")
