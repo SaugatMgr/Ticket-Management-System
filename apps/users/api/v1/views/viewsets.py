@@ -1,3 +1,4 @@
+from django.contrib.auth.models import Permission
 from rest_framework import permissions, viewsets
 
 from apps.users.api.v1.serializers.serializers import (
@@ -5,7 +6,7 @@ from apps.users.api.v1.serializers.serializers import (
     PermissionSerializer,
     RoleSerializer,
 )
-from apps.users.models import Permission, Role
+from apps.users.models import Role
 from utils.pagination import CustomPageSizePagination
 
 
