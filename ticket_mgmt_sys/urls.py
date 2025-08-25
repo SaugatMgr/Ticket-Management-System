@@ -25,5 +25,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/v1/user/", include("apps.users.api.v1.routes.urls")),
     path("api/v1/", include(ticket_router.urls)),
-    path("api/v1/user/", include(user_router.urls)),
+    path("api/v1/", include(user_router.urls)),
 ]

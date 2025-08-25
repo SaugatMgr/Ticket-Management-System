@@ -1,3 +1,4 @@
+from django.contrib.auth.models import Permission
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import (
     TokenObtainPairSerializer,
@@ -5,7 +6,7 @@ from rest_framework_simplejwt.serializers import (
 )
 from rest_framework_simplejwt.settings import api_settings
 
-from apps.users.models import CustomUser, Permission, Role
+from apps.users.models import CustomUser, Role
 from utils.services import generate_error
 
 
@@ -69,7 +70,7 @@ class CustomTokenVerifySerializer(TokenVerifySerializer):
 class PermissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Permission
-        fields = ["id", "codename", "description"]
+        fields = ["id", "codename", "name", "content_type"]
 
 
 class RoleSerializer(serializers.ModelSerializer):

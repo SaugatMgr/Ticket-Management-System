@@ -1,3 +1,4 @@
+from django.contrib.auth.models import Permission
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -12,6 +13,7 @@ from apps.users.api.v1.serializers.serializers import (
     UserRegisterSerializer,
 )
 from apps.users.models import CustomUser
+from utils.services import get_instance_by_attr
 
 
 class UserRegisterView(APIView):
@@ -73,3 +75,18 @@ class CustomTokenVerifyView(TokenVerifyView):
                 {"error": str(e), "field": "access"},
                 status=status.HTTP_401_UNAUTHORIZED,
             )
+
+
+class AssignPermissionToUserView(APIView):
+
+    def post(self, request, *args, **kwargs):
+        user_id = kwargs.get("user_id")
+        permission_ids = request.data.get("permissions")
+
+        user = get_instance_by_attr(CustomUser, "id", user_id)
+        user_role = user.role
+        for permission_id in permission_ids:
+            permission = get_instance_by_attr(Permission, "id", permission_id)
+            if permission not in user_role.permissions.all():
+                user_role.permissions.add(permission)
+        return Response({"message": "Permissions assigned successfully."})
