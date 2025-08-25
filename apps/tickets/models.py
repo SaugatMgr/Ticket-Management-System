@@ -60,11 +60,6 @@ class TicketPriority(TicketStatusPriorityCommon):
 class Ticket(BaseModel):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    created_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name="created_tickets",
-    )
     assigned_to = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
