@@ -16,13 +16,21 @@ class CustomUserAdmin(UserAdmin):
         "username",
         "first_name",
         "last_name",
+        "role",
         "is_active",
         "is_staff",
         "is_superuser",
         "created_at",
     )
-    list_filter = ("is_active", "is_staff", "is_superuser", "created_at")
-    search_fields = ("email", "username", "first_name", "last_name", "phone")
+    list_filter = ("role", "is_active", "is_staff", "is_superuser", "created_at")
+    search_fields = (
+        "email",
+        "username",
+        "first_name",
+        "last_name",
+        "phone",
+        "role__name",
+    )
     ordering = ("-created_at",)
     filter_horizontal = ()
 
@@ -49,6 +57,7 @@ class CustomUserAdmin(UserAdmin):
                     "is_active",
                     "is_staff",
                     "is_superuser",
+                    "role",
                 )
             },
         ),
