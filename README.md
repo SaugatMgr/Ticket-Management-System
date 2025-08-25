@@ -164,14 +164,6 @@ Supports dynamic **role-based permissions**, hierarchical menus, ticket status &
 
 ---
 
-## Seed Data
-
-Seed initial roles, permissions, and demo users using:
-
-```bash
-python manage.py seed_roles_with_permissions
-```
-
 ## Setup Instructions
 
 1. Clone the repository
@@ -211,7 +203,7 @@ python manage.py seed_roles_with_permissions
 6. Seed demo data
 
 ```bash
-python manage.py seed
+python manage.py seed_demo_data
 ```
 
 7. Run the development server
