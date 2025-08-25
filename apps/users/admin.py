@@ -24,6 +24,7 @@ class CustomUserAdmin(UserAdmin):
     list_filter = ("is_active", "is_staff", "is_superuser", "created_at")
     search_fields = ("email", "username", "first_name", "last_name", "phone")
     ordering = ("-created_at",)
+    filter_horizontal = ()
 
     readonly_fields = (
         "created_at",
@@ -48,8 +49,6 @@ class CustomUserAdmin(UserAdmin):
                     "is_active",
                     "is_staff",
                     "is_superuser",
-                    "groups",
-                    "user_permissions",
                 )
             },
         ),
@@ -70,6 +69,7 @@ class CustomUserAdmin(UserAdmin):
                     "password2",
                     "is_active",
                     "is_staff",
+                    "role",
                 ),
             },
         ),
@@ -92,15 +92,6 @@ class RoleAdmin(admin.ModelAdmin):
 class PermissionAdmin(admin.ModelAdmin):
     """Admin panel for custom Permission."""
 
-    list_display = (
-        "codename",
-        "created_at",
-        "modified_at",
-        "created_by",
-        "modified_by",
-    )
+    list_display = ("codename",)
     search_fields = ("codename",)
-    list_filter = ("created_at",)
     ordering = ("codename",)
-
-    readonly_fields = ("created_at", "modified_at", "created_by", "modified_by")
