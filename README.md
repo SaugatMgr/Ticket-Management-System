@@ -9,8 +9,8 @@ Supports dynamic **role-based permissions**, hierarchical menus, ticket status &
 
 - **Authentication & Authorization**
 
-  - JWT-based login (email & password)
-  - Dynamic roles: Admin, Manager, Support Agent, Customer
+  - JWT-based login (username & password)
+  - Dynamic roles: Admin, Manager, Agent, Customer
   - Role-based permissions control CRUD access on Tickets, Status, Priority, and Menus
 
 - **Role-Based Dynamic Permissions**
@@ -33,14 +33,14 @@ Supports dynamic **role-based permissions**, hierarchical menus, ticket status &
 
 - **Notification System**
   - Logs notifications on ticket creation, update, assignment, and reassignment
-  - Implemented using Django signals and optional in-app `NotificationLog`
+  - Implemented using Django signals and in-app `NotificationLog`
 
 ---
 
 ## Tech Stack
 
-- Python 3.x
-- Django 4.x
+- Python 3.13.1
+- Django 5.2.5
 - Django REST Framework
 - PostgreSQL (or your preferred DB)
 - JWT Authentication (`djangorestframework-simplejwt`)
@@ -49,7 +49,7 @@ Supports dynamic **role-based permissions**, hierarchical menus, ticket status &
 
 ## Models
 
-- **User** – Custom user model with email login and role
+- **User** – Custom user model with username password login and role
 - **Role** – Defines user roles and associated permissions
 - **Ticket** – Stores ticket details, assigned user, status, priority
 - **TicketStatus** – Dynamic status with weight
@@ -177,8 +177,8 @@ python manage.py seed_roles_with_permissions
 1. Clone the repository
 
 ```bash
-git clone <repo-url>
-cd <repo-folder>
+git clone https://github.com/SaugatMgr/Ticket-Management-System.git
+cd Ticket-Management-System
 ```
 
 2. Create a virtual environment
