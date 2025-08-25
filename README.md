@@ -188,25 +188,32 @@ pip install -r requirements.txt
 
 ```
 
-4. Run migrations
+4. Set up env file
+
+```bash
+- copy env.example file content to .env file in project root directory
+- Edit the variables as needed.
+```
+
+5. Run migrations
 
 ```bash
 python manage.py migrate
 ```
 
-5. Seed initial roles, permissions, and demo users
+6. Seed initial roles, permissions, and demo users
 
 ```bash
 python manage.py seed_roles_with_permissions
 ```
 
-6. Seed demo data
+7. Seed demo data
 
 ```bash
 python manage.py seed_demo_data
 ```
 
-7. Run the development server
+8. Run the development server
 
 ```bash
 python manage.py runserver
